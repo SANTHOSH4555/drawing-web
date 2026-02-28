@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Santhosh Dream Drawing | Artist Portfolio</title>
+    <meta
+      name="description"
+      content="Visual artist portfolio showcasing detailed drawings, custom portraits, and sketches. Transforming imagination into detailed art."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Custom Cursor (Optional elegant touch) -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">Santhosh</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-social">
+        <a
+          href="https://www.instagram.com/santhosh_dream_drawing"
+          target="_blank"
+          aria-label="Instagram"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+      </div>
+      <button class="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero fade-in-section">
+        <div class="hero-content">
+          <h1 class="hero-title">Santhosh<br /><span>Dream Drawing</span></h1>
+          <p class="hero-tagline">Transforming Imagination into Detailed Art</p>
+          <div class="hero-actions">
+            <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+            <a
+              href="https://www.instagram.com/santhosh_dream_drawing"
+              target="_blank"
+              class="btn btn-outline"
+              ><i class="fa-brands fa-instagram"></i> Follow on IG</a
+            >
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <span>Discover</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+      </section>
+
+      <!-- Portfolio Gallery -->
+      <section id="portfolio" class="portfolio">
+        <div class="section-header fade-in-section">
+          <h2>Selected Works</h2>
+          <div class="separator"></div>
+        </div>
+        <div class="masonry-grid" id="masonry-gallery">
+          <!-- Gallery items injected via JS -->
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about fade-in-section">
+        <div class="about-container">
+          <div class="about-image">
+            <img
+              src="images/2025-09-13_11-50-43_UTC_1.jpg"
+              alt="Artist at work"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-content">
+            <h2>About the Artist</h2>
+            <div class="separator-left"></div>
+            <p>
+              I am a passionate visual artist dedicated to exploring the
+              intersection of precise detail and emotive storytelling.
+              Transitioning into the digital and creative fields, my work is
+              driven by a deep fascination with light, form, and human
+              expression.
+            </p>
+            <p>
+              Through "Santhosh Dream Drawing", I aim to bring imaginations to
+              life on canvas and paper, crafting pieces that leave a lasting
+              impression on viewers and clients alike.
+            </p>
+            <a href="#contact" class="btn btn-secondary"
+              >Inquire for Collaborations</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="services">
+        <div class="section-header fade-in-section">
+          <h2>Services</h2>
+          <div class="separator"></div>
+        </div>
+        <div class="services-grid">
+          <div class="service-card fade-in-section">
+            <i class="fa-solid fa-user"></i>
+            <h3>Custom Portraits</h3>
+            <p>
+              Highly detailed, lifelike pencil and charcoal portraits capturing
+              the true essence of the subject.
+            </p>
+          </div>
+          <div
+            class="service-card fade-in-section"
+            style="transition-delay: 0.1s"
+          >
+            <i class="fa-solid fa-pencil"></i>
+            <h3>Pencil Sketches</h3>
+            <p>
+              Expressive, dynamic sketches offering a raw and intimate
+              perspective on everyday scenes and concepts.
+            </p>
+          </div>
+          <div
+            class="service-card fade-in-section"
+            style="transition-delay: 0.2s"
+          >
+            <i class="fa-solid fa-palette"></i>
+            <h3>Commissioned Art</h3>
+            <p>
+              Bespoke artworks tailored for your home, office, or publication,
+              blending your vision with my style.
+            </p>
+          </div>
+          <div
+            class="service-card fade-in-section"
+            style="transition-delay: 0.3s"
+          >
+            <i class="fa-solid fa-desktop"></i>
+            <h3>Digital Illustration</h3>
+            <p>
+              Modern digital art suitable for commercial, editorial, or personal
+              projects with limitless possibilities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Instagram Integration -->
+      <section id="instagram-feed" class="instagram-feed fade-in-section">
+        <div class="section-header">
+          <h2>@santhosh_dream_drawing</h2>
+          <div class="separator"></div>
+          <p>Latest from Instagram</p>
+        </div>
+        <div class="ig-grid" id="ig-feed">
+          <!-- IG Posts generated via JS -->
+        </div>
+        <div class="ig-action">
+          <a
+            href="https://www.instagram.com/santhosh_dream_drawing"
+            target="_blank"
+            class="btn btn-outline"
+            >View More on Instagram</a
+          >
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact fade-in-section">
+        <div class="contact-container">
+          <div class="contact-info">
+            <h2>Let's Create Something Together</h2>
+            <p>
+              Open for commissions, gallery exhibitions, and creative
+              collaborations.
+            </p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>hello@santhoshdreamdrawing.com</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Worldwide Availability</span>
+              </div>
+            </div>
+            <div class="social-links">
+              <a
+                href="https://www.instagram.com/santhosh_dream_drawing"
+                target="_blank"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-behance"></i></a>
+            </div>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" required placeholder="Your Name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="your@email.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message / Commission Details</label>
+              <textarea
+                id="message"
+                rows="5"
+                required
+                placeholder="Describe what you're looking for..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Send Inquiry
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">Santhosh Dream Drawing</div>
+        <p>&copy; 2026 Santhosh Dream Drawing. All Rights Reserved.</p>
+        <div class="footer-links">
+          <a
+            href="https://www.instagram.com/santhosh_dream_drawing"
+            target="_blank"
+            >Instagram</a
+          >
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Fullscreen Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
