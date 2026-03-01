@@ -781,6 +781,7 @@ footer {
     padding: 6rem 1.5rem;
   }
 
+
   .hero {
     height: 90vh;
   }
@@ -821,10 +822,11 @@ footer {
 
   .masonry-grid {
     column-count: 2;
-    column-gap: 1.5rem;
+    column-gap: 1rem;
   }
+
   .portfolio-item {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .portfolio-overlay {
