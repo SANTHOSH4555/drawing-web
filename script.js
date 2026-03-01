@@ -80,6 +80,7 @@ setTimeout(() => {
 const masonryGallery = document.getElementById("masonry-gallery");
 
 const artWorks = [
+    { title: 'Storytelling Art', desc: 'Narrative Journey <br> <span class="unique-font">Created by Santhosh & Shamu</span>', src: 'images/storytelling_art.jpg' },
     { title: 'Commissioned Portrait', desc: 'Detailed Pencil Drawing', src: 'images/2026-01-26_10-06-50_UTC_1.jpg' },
     { title: 'XXXTENTACION', desc: 'Portrait Study', src: 'images/2025-10-18_12-25-47_UTC_1.jpg' },
     { title: 'Money Heist Professor', desc: 'Character Sketch', src: 'images/2025-08-17_10-47-55_UTC_1.jpg' },
@@ -88,7 +89,7 @@ const artWorks = [
     { title: 'Lord Krishna', desc: 'Divine Art', src: 'images/2025-07-09_11-38-21_UTC.jpg' },
     { title: 'Hinata Hyuga', desc: 'Anime Sketch', src: 'images/2024-11-17_05-41-30_UTC.jpg' },
     { title: 'Tamil Iniya', desc: 'Portrait Sketch', src: 'images/2025-07-04_04-22-55_UTC_1.jpg' },
-    { title: 'Akka Portrait', desc: 'Personal Commission', src: 'images/2024-10-27_11-32-48_UTC.jpg' },
+    { title: 'Custom Art Work', desc: 'Personal Commission', src: 'images/akka_portrait_new.jpg' },
     { title: 'Calm Look', desc: 'Expressive Shading', src: 'images/2025-12-06_11-58-00_UTC_1.jpg' }
 ];
 
@@ -120,7 +121,7 @@ const igPosts = [
     'images/2025-10-18_12-25-47_UTC_1.jpg',
     'images/2025-09-13_11-50-43_UTC_1.jpg',
     'images/2025-08-17_10-47-55_UTC_1.jpg',
-    'images/2025-07-23_11-44-03_UTC_1.jpg',
+    'images/portrait_saree.jpg',
     'images/2025-07-09_11-38-21_UTC.jpg',
     'images/2025-07-04_04-22-55_UTC_1.jpg'
 ];
