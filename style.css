@@ -416,7 +416,9 @@ section {
   font-size: 2.5rem;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
-  transition: color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 .service-card:hover i {
   color: var(--accent-color);
@@ -610,37 +612,44 @@ footer {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(5px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .lightbox-content {
-  margin: auto;
   display: block;
-  max-width: 90%;
+  width: auto;
+  max-width: 90vw;
   max-height: 80vh;
-  margin-top: 5vh;
+  object-fit: contain;
+  border-radius: 8px;
   animation: zoomIn var(--transition-fast);
 }
 .lightbox-caption {
-  margin: auto;
   display: block;
-  width: 80%;
+  width: 90%;
   max-width: 700px;
   text-align: center;
   color: #ccc;
-  padding: 20px 0;
+  padding: 16px 0;
   font-family: var(--font-heading);
   font-size: 1.2rem;
 }
 .lightbox-close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
+  position: fixed;
+  top: 20px;
+  right: 24px;
   color: #f1f1f1;
   font-size: 40px;
   font-weight: 300;
   transition: 0.3s;
+  line-height: 1;
+  z-index: 2001;
+  cursor: pointer;
 }
 .lightbox-close:hover,
 .lightbox-close:focus {
@@ -717,7 +726,7 @@ footer {
     height: 40px;
     z-index: 1002;
     background: none;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--text-primary);
     font-size: 1.1rem;
     padding: 0;
@@ -766,7 +775,9 @@ footer {
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--text-secondary);
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease;
     font-weight: 400;
     opacity: 1;
     transform: none;
@@ -778,9 +789,8 @@ footer {
   }
 
   section {
-    padding: 6rem 0.5rem;
+    padding: 5rem 1.2rem;
   }
-
 
   .hero {
     height: 90vh;
@@ -821,28 +831,64 @@ footer {
   }
 
   .masonry-grid {
-    column-count: 2;
-    column-gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    column-count: unset;
   }
 
   .portfolio-item {
-    margin-bottom: 2.5rem;
+    break-inside: unset;
+    margin-bottom: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    aspect-ratio: 2 / 3;
+    position: relative;
+  }
+
+  .portfolio-item:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: unset;
+    border-radius: 0;
+    transition: transform 0.4s ease;
   }
 
   .portfolio-overlay {
     opacity: 1;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%);
-    padding: 1.5rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      transparent 100%
+    );
+    padding: 0.75rem;
+    border-radius: 0;
   }
 
   .portfolio-title {
-    font-size: 1rem;
+    font-size: 0.8rem;
     transform: none;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
+    letter-spacing: 0.4px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+    font-weight: 500;
   }
   .portfolio-desc {
-    font-size: 0.75rem;
+    font-size: 0.62rem;
     transform: none;
+    color: rgba(210, 210, 210, 0.9);
+    letter-spacing: 0.2px;
   }
 
   .about-container {
@@ -875,13 +921,13 @@ footer {
   }
 
   .lightbox-content {
-    max-width: 95%;
-    margin-top: 10vh;
+    max-width: 95vw;
+    max-height: 70vh;
   }
   .lightbox-close {
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
+    top: 14px;
+    right: 16px;
+    font-size: 28px;
   }
 
   .footer-content {
@@ -897,6 +943,9 @@ footer {
 }
 
 @media (max-width: 480px) {
+  section {
+    padding: 4.5rem 1rem;
+  }
   .hero-title {
     font-size: 2.2rem;
   }
@@ -906,7 +955,56 @@ footer {
   .section-header h2 {
     font-size: 1.8rem;
   }
+  .masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    column-count: unset;
+  }
+  .portfolio-item {
+    break-inside: unset;
+    margin-bottom: 0;
+    border-radius: 16px;
+    aspect-ratio: 2 / 3;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: unset;
+    border-radius: 0;
+  }
+  .portfolio-overlay {
+    padding: 0.75rem;
+  }
+  .portfolio-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+  .portfolio-desc {
+    font-size: 0.62rem;
+  }
   .ig-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  .ig-item {
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  .contact-container {
+    gap: 2rem;
+  }
+  .hero-actions {
+    max-width: 240px;
+  }
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
   }
 }
