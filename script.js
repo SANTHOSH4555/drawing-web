@@ -119,7 +119,7 @@ const igPosts = [
     'images/2026-01-26_10-06-50_UTC_1.jpg',
     'images/2025-12-06_11-58-00_UTC_1.jpg',
     'images/2025-10-18_12-25-47_UTC_1.jpg',
-    'images/2025-09-13_11-50-43_UTC_1.jpg',
+    'images/mens_portrait.jpg',
     'images/2025-08-17_10-47-55_UTC_1.jpg',
     'images/portrait_saree.jpg',
     'images/2025-07-09_11-38-21_UTC.jpg',
