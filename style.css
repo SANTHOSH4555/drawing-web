@@ -10,8 +10,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
-
 :root {
   --bg-color: #0a0a0a;
   --surface-color: #111111;
@@ -30,6 +31,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
 
 h1,
@@ -306,6 +308,7 @@ section {
   text-align: center;
   position: relative;
   padding-top: 0;
+  overflow: hidden;
 }
 .hero::before {
   content: "";
