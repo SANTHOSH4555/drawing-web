@@ -534,6 +534,7 @@ section {
   margin-bottom: 1.5rem;
   color: var(--text-secondary);
   font-size: 1.1rem;
+  text-align: justify;
 }
 
 /* =========================================
