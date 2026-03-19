@@ -38,14 +38,22 @@
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#shop">Shop</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-social">
-        <a
+        <athis 
           href="https://www.instagram.com/santhosh_dream_drawing"
           target="_blank"
           aria-label="Instagram"
           ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a
+          href="https://wa.me/919042564940"
+          target="_blank"
+          aria-label="WhatsApp"
+          style="margin-left: 1rem;"
+          ><i class="fa-brands fa-whatsapp"></i
         ></a>
       </div>
       <button class="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -64,6 +72,12 @@
               target="_blank"
               class="btn btn-outline"
               ><i class="fa-brands fa-instagram"></i> Follow on IG</a
+            >
+            <a
+              href="https://wa.me/919042564940"
+              target="_blank"
+              class="btn btn-outline"
+              ><i class="fa-brands fa-whatsapp"></i> Message on WA</a
             >
           </div>
         </div>
@@ -85,31 +99,27 @@
       </section>
 
       <!-- About Section -->
-      <section id="about" class="about fade-in-section">
+      <section id="about" class="about">
         <div class="about-container">
-          <div class="about-image">
+          <div class="about-image fade-in-left">
             <img
               src="images/2025-09-13_11-50-43_UTC_1.jpg"
               alt="Artist at work"
               loading="lazy"
             />
           </div>
-          <div class="about-content">
-            <h2>About the Artist</h2>
+          <div class="about-content fade-in-right">
+            <h2 class="fade-in-up">About the Artist</h2>
             <div class="separator-left"></div>
             <p>
-              I am a passionate visual artist dedicated to exploring the
-              intersection of precise detail and emotive storytelling.
-              Transitioning into the digital and creative fields, my work is
-              driven by a deep fascination with light, form, and human
-              expression.
+              A drawing is more than lines on paper it is a way to preserve emotions and memories. Each portrait is created with patience and attention to detail, capturing not just a face but the feeling behind it. These artworks turn special moments into meaningful memories that can be cherished for a lifetime
             </p>
             <p>
               Through "Santhosh Dream Drawing", I aim to bring imaginations to
               life on canvas and paper, crafting pieces that leave a lasting
               impression on viewers and clients alike.
             </p>
-            <a href="#contact" class="btn btn-secondary"
+            <a href="#contact" class="btn btn-secondary fade-in-up"
               >Inquire for Collaborations</a
             >
           </div>
@@ -167,9 +177,44 @@
         </div>
       </section>
 
-      <!-- Instagram Integration -->
+      <!-- Shop Section -->
+      <section id="shop" class="shop">
+        <div class="section-header fade-in-section">
+          <h2>Purchase Artworks</h2>
+          <div class="separator"></div>
+          <p>Order your custom hand-drawn masterpieces</p>
+        </div>
+        <div class="shop-grid">
+          <!-- Portrait Art -->
+          <div class="shop-card fade-in-section">
+            <div class="shop-image">
+              <img src="images/shop_portrait_drawing.jpg" alt="Portrait Art" loading="lazy" />
+            </div>
+            <div class="shop-content">
+              <h3>Portrait Drawing</h3>
+              <p class="price">₹1000</p>
+              <p class="description">Detailed, lifelike pencil and charcoal portrait from your photograph(This drawing price dependeds on the drawing sheets sizes,such as A3,A4 and A5).</p>
+              <button class="btn btn-primary btn-block" onclick="orderArt('Portrait Drawing')">Buy Now</button>
+            </div>
+          </div>
+          <!-- Storytelling Art -->
+          <div class="shop-card fade-in-section" style="transition-delay: 0.1s">
+            <div class="shop-image">
+              <img src="images/storytelling_art.jpg" alt="Storytelling Art" loading="lazy" />
+            </div>
+            <div class="shop-content">
+              <h3>Storytelling Art</h3>
+              <p class="price">₹600</p>
+              <p class="description">Your love story or life moments translated into a custom visual story with emotional narration.</p>
+              <button class="btn btn-primary btn-block" onclick="orderArt('Storytelling Art', 600)">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Instagram & WhatsApp Integration -->
       <section id="instagram-feed" class="instagram-feed">
-        <div class="section-header">
+        <div class="section-header fade-in-section">
           <h2>@santhosh_dream_drawing</h2>
           <div class="separator"></div>
           <p>Latest from Instagram</p>
@@ -177,14 +222,20 @@
         <div class="ig-grid" id="ig-feed">
           <!-- IG Posts generated via JS -->
         </div>
-        <div class="ig-action">
+        <div class="ig-action" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
           <a
             href="https://www.instagram.com/santhosh_dream_drawing"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-outline"
             id="ig-view-more-btn"
-          >View More on Instagram</a>
+          ><i class="fa-brands fa-instagram"></i> View More on Instagram</a>
+          <a
+            href="https://wa.me/919042564940"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          ><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
         </div>
       </section>
 
@@ -200,7 +251,7 @@
             <div class="contact-details">
               <div class="contact-item">
                 <i class="fa-solid fa-envelope"></i>
-                <span>@santhoshaa2023@gmail.com</span>
+                <span>santhoshaa2023@gmail.com</span>
               </div>
               <div class="contact-item">
                 <i class="fa-solid fa-location-dot"></i>
@@ -212,6 +263,11 @@
                 href="https://www.instagram.com/santhosh_dream_drawing"
                 target="_blank"
                 ><i class="fa-brands fa-instagram"></i
+              ></a>
+              <a
+                href="https://wa.me/919042564940"
+                target="_blank"
+                ><i class="fa-brands fa-whatsapp"></i
               ></a>
               <a href="#"><i class="fa-brands fa-twitter"></i></a>
               <a href="#"><i class="fa-brands fa-behance"></i></a>
@@ -258,11 +314,66 @@
             target="_blank"
             >Instagram</a
           >
+          <a
+            href="https://wa.me/919042564940"
+            target="_blank"
+            >WhatsApp</a
+          >
           <a href="#portfolio">Portfolio</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
     </footer>
+
+    <!-- Order Form Modal -->
+    <div id="order-modal" class="modal-overlay">
+      <div class="modal-content glass-panel">
+        <span class="modal-close" id="close-order-modal">&times;</span>
+        <div class="modal-header" style="text-align: center; margin-bottom: 1.5rem;">
+          <h2 id="modal-art-title" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-color);">Art Title</h2>
+          <p id="modal-art-price" class="price" style="font-size: 1.4rem; color: var(--accent-color); font-weight: 600;">₹0</p>
+        </div>
+        <div class="modal-body">
+          <form id="order-form-modal">
+            <input type="hidden" id="modal-art-type" />
+            
+            <div class="form-group size-selection" id="size-selection-group" style="display: none;">
+              <label for="art-size">Select Size</label>
+              <div class="select-wrapper" style="position: relative;">
+                <select id="art-size" class="custom-select">
+                  <option value="A3" data-price="1800" style="background: #111;">A3 (297 x 420 mm) - ₹1800</option>
+                  <option value="A4" data-price="1000" style="background: #111;">A4 (210 x 297 mm) - ₹1000</option>
+                  <option value="A5" data-price="600" style="background: #111;">A5 (148 x 210 mm) - ₹600</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="order-name">Your Name</label>
+              <input type="text" id="order-name" required placeholder="Enter your name" />
+            </div>
+            <div class="form-group">
+              <label for="order-phone">Phone / WhatsApp</label>
+              <input type="tel" id="order-phone" required placeholder="Enter your number" />
+            </div>
+            <div class="form-group">
+              <label for="order-notes">Special Requirements</label>
+              <textarea id="order-notes" rows="3" placeholder="Describe any specific details or reference photos..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+              <button type="button" id="btn-whatsapp-order" class="btn btn-outline" style="border-color: #25d366; color: #25d366;">
+                <i class="fa-brands fa-whatsapp"></i> Order via WA
+              </button>
+              <button type="submit" id="btn-submit-order" class="btn btn-primary">
+                Submit Request
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <!-- Fullscreen Lightbox -->
     <div id="lightbox" class="lightbox">
@@ -271,6 +382,35 @@
       <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Premium WhatsApp Float -->
+    <a href="https://wa.me/919042564940" class="whatsapp-float-premium" target="_blank" rel="noopener noreferrer" aria-label="Message on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>Message Us</span>
+    </a>
+
+    <!-- Firebase Script -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+   const firebaseConfig = {
+    apiKey: "AIzaSyASxYO5Qd-ty24uuvKvQZKMNsLolP-GxZI",
+    authDomain: "santhoshdrawing-e88cd.firebaseapp.com",
+    projectId: "santhoshdrawing-e88cd",
+    storageBucket: "santhoshdrawing-e88cd.firebasestorage.app",
+    messagingSenderId: "634007137344",
+    appId: "1:634007137344:web:d49843f7abb1d3d3ccc3a5"
+  };
+
+
+  // Initialize Firebase using compat mode
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  
+  // Expose db to window scope to be accessible in script.js
+  window.db = db;
+</script>
+
+<!-- Your JS -->
+<script src="script.js"></script>
   </body>
 </html>
