@@ -1786,10 +1786,24 @@ footer::before {
     margin-bottom: 8px !important;
   }
 
-  /* QR card — shrink on small phones */
+  /* QR card — perfectly proportioned on mobile */
   #upi-qr-image {
-    width: 140px !important;
-    height: 140px !important;
+    width: 170px !important;
+    height: 170px !important;
+  }
+  
+  /* Shrink text inside white QR card so it doesn't stretch the card wider than the QR */
+  #upi-payment-step div[style*="background:#fff"] {
+    padding: 12px 12px 8px !important;
+  }
+  #upi-payment-step div[style*="background:#fff"] p:nth-child(1) {
+    font-size: 0.6rem !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 8px !important;
+  }
+  #upi-payment-step div[style*="background:#fff"] p:nth-child(3) {
+    font-size: 0.6rem !important;
+    margin-top: 6px !important;
   }
 
   /* The container for the QR card itself */
@@ -1852,8 +1866,17 @@ footer::before {
     padding: 1rem 0.75rem 1.5rem;
   }
   #upi-qr-image {
-    width: 130px !important;
-    height: 130px !important;
+    width: 145px !important;
+    height: 145px !important;
+  }
+  #upi-payment-step div[style*="background:#fff"] p:nth-child(1) {
+    font-size: 0.52rem !important;
+    letter-spacing: 0.6px !important;
+    margin-bottom: 6px !important;
+  }
+  #upi-payment-step div[style*="background:#fff"] p:nth-child(3) {
+    font-size: 0.52rem !important;
+    margin-top: 4px !important;
   }
   #upi-payment-step div[style*="inset:-2px"] {
     /* Gold ring parent wrapper — let it shrink */
