@@ -1713,13 +1713,13 @@ footer::before {
 ========================================= */
 @media (max-width: 600px) {
   .modal-overlay {
-    padding: 0;
-    align-items: flex-end;   /* sheet slides up from bottom */
+    padding: 1rem;
+    align-items: center;   /* center vertically instead of bottom-sheet */
   }
   .modal-content.glass-panel {
-    padding: 1.25rem 1rem 1.5rem; /* slightly less bottom padding */
-    max-height: 85vh; /* safer height for mobile browser toolbars */
-    border-radius: 20px 20px 0 0;   /* bottom-sheet feel */
+    padding: 1.25rem 1.25rem 1.5rem;
+    max-height: 85vh; 
+    border-radius: 20px;   /* rounded on all corners */
     width: 100%;
     max-width: 100%;
   }
