@@ -362,11 +362,28 @@ function orderArt(artType, basePrice = null) {
     orderModal.style.display = "flex";
     modalArtTitle.innerText = artType;
     modalArtTypeInput.value = artType;
-    
+
     // reset form
     document.getElementById("order-form-modal").reset();
 
-    // Check if it's Portrait Drawing to show size selection
+    // Reset to step 1
+    const orderDetailsStep  = document.getElementById("order-details-step");
+    const upiPaymentStep    = document.getElementById("upi-payment-step");
+    const confirmWrap       = document.getElementById("btn-confirm-paid-wrap");
+    const btnSubmit         = document.getElementById("btn-submit-order");
+    const btnWA             = document.getElementById("btn-whatsapp-order");
+
+    if (orderDetailsStep) orderDetailsStep.style.display = "block";
+    if (upiPaymentStep)   upiPaymentStep.style.display   = "none";
+    if (confirmWrap)      confirmWrap.style.display       = "none";
+    if (btnSubmit) {
+      btnSubmit.innerHTML = '<i class="fa-solid fa-qrcode" style="margin-right:6px; font-size:0.85em;"></i> Proceed to Pay';
+      btnSubmit.style.display = "inline-block";
+      btnSubmit.removeAttribute("data-step");
+    }
+    if (btnWA) btnWA.style.display = "inline-block";
+
+    // Portrait → show size picker
     if (artType === "Portrait Drawing") {
       sizeSelectionGroup.style.display = "block";
       updatePriceFromSize();
@@ -417,72 +434,161 @@ if (orderFormModal) {
 }
 
 async function triggerOrder(method) {
-  const name = document.getElementById("order-name").value;
-  const phone = document.getElementById("order-phone").value;
-  const notes = document.getElementById("order-notes").value;
+  const name    = document.getElementById("order-name").value.trim();
+  const phone   = document.getElementById("order-phone").value.trim();
+  const address = document.getElementById("order-address") ? document.getElementById("order-address").value.trim() : "";
+  const notes   = document.getElementById("order-notes").value.trim();
   const artType = document.getElementById("modal-art-type").value;
+
   let finalDetails = `Art Type: ${artType}`;
-  
+  let rawAmount    = 600;
+
   if (artType === "Portrait Drawing") {
-    finalDetails += ` | Size: ${artSizeSelect.value} (₹${artSizeSelect.options[artSizeSelect.selectedIndex].dataset.price})`;
+    rawAmount    = parseInt(artSizeSelect.options[artSizeSelect.selectedIndex].dataset.price);
+    finalDetails += ` | Size: ${artSizeSelect.value} (₹${rawAmount})`;
   } else {
-    finalDetails += ` | Price: ${modalArtPrice.innerText}`;
+    rawAmount    = parseInt(modalArtPrice.innerText.replace(/[^0-9]/g, "")) || 600;
+    finalDetails += ` | Price: ₹${rawAmount}`;
   }
 
-  const messageText = `Hello! I would like to order:
-${finalDetails}
+  const waConfirmText = `Hi! I just paid ₹${rawAmount} for ${artType}.\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nNotes: ${notes}\nUPI ID paid to: santhoshaa2023-1@okhdfcbank\n\n(Sending payment screenshot for confirmation)`;
 
-Name: ${name}
-Phone: ${phone}
-Notes: ${notes}
-
-Please provide more details on the next steps!`;
-
+  // ── WhatsApp direct order (no payment) ───────────────────────
   if (method === "whatsapp") {
-    if(!name || !phone) {
-      alert("Please enter Name and Phone number in the form above.");
+    if (!name || !phone) {
+      alert("Please enter your Name and Phone number.");
       return;
     }
-    const waUrl = `https://wa.me/919042564940?text=${encodeURIComponent(messageText)}`;
-    window.open(waUrl, "_blank");
+    const msg = `Hello! I would like to order:\n${finalDetails}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nNotes: ${notes}\n\nPlease confirm next steps!`;
+    window.open(`https://wa.me/919042564940?text=${encodeURIComponent(msg)}`, "_blank");
     orderModal.style.display = "none";
-  } else if (method === "firebase") {
-    const btnSubmit = document.getElementById("btn-submit-order");
-    const originalText = btnSubmit.innerHTML;
-    btnSubmit.innerText = "Sending...";
-    
-    try {
-      if (window.db) {
-         await window.db.collection("orders").add({
-           artType: artType,
-           details: finalDetails,
-           name: name,
-           phone: phone,
-           notes: notes,
-           timestamp: firebase.firestore.FieldValue.serverTimestamp()
-         });
+    return;
+  }
+
+  // ── UPI payment flow ─────────────────────────────────────────
+  if (!name || !phone) {
+    alert("Please fill in your Name and Phone number before proceeding.");
+    return;
+  }
+
+  const detailsStep   = document.getElementById("order-details-step");
+  const upiStep       = document.getElementById("upi-payment-step");
+  const confirmWrap   = document.getElementById("btn-confirm-paid-wrap");
+  const btnSubmit     = document.getElementById("btn-submit-order");
+  const btnWA         = document.getElementById("btn-whatsapp-order");
+
+  // ---- STEP 1: Show UPI payment screen ----
+  detailsStep.style.display = "none";
+  upiStep.style.display     = "block";
+  btnWA.style.display       = "none";
+  btnSubmit.style.display   = "none";
+  confirmWrap.style.display = "block";
+
+  const UPI_ID   = "santhoshaa2023-1@okhdfcbank";
+  const UPI_NAME = "Santhosh%20Dream%20Drawing";
+  const upiBase  = `upi://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${rawAmount}&cu=INR`;
+
+  // Dynamic QR — encodes exact order amount
+  const qrData = encodeURIComponent(upiBase);
+  document.getElementById("upi-qr-image").src =
+    `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${qrData}&bgcolor=ffffff&color=000000&margin=8&qzone=1`;
+
+  // Amount display
+  document.getElementById("upi-total-amount").innerText = `₹${rawAmount}`;
+
+  // App-specific deep links
+  document.getElementById("gpay-link").href    = `gpay://upi/pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${rawAmount}&cu=INR`;
+  document.getElementById("phonepe-link").href = `phonepe://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${rawAmount}&cu=INR`;
+  document.getElementById("paytm-link").href   = `paytmmp://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${rawAmount}&cu=INR`;
+
+  // ── Smart Redirect: mobile auto-opens UPI app ─────────────────
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const redirectBanner = document.getElementById("upi-redirect-banner");
+  const redirectLabel  = document.getElementById("upi-redirect-label");
+
+  if (isMobile && redirectBanner && redirectLabel) {
+    redirectBanner.style.display = "flex";
+    let secs = 3;
+    redirectLabel.textContent = `Opening payment app in ${secs}s…`;
+
+    const timer = setInterval(() => {
+      secs--;
+      if (secs > 0) {
+        redirectLabel.textContent = `Opening payment app in ${secs}s…`;
+      } else {
+        clearInterval(timer);
+        redirectLabel.textContent = "Redirecting…";
+        // Try to open the UPI deep link
+        window.location.href = upiBase;
+        // After 2s, if still on page (app not installed), show QR fallback msg
+        setTimeout(() => {
+          redirectLabel.textContent = "App not opened? Scan the QR above ↑";
+          redirectBanner.style.background = "rgba(255,165,0,0.12)";
+          redirectBanner.style.borderColor = "rgba(255,165,0,0.35)";
+        }, 2000);
       }
-      btnSubmit.innerText = "Order Sent!";
-      btnSubmit.style.backgroundColor = "#4caf50";
-      btnSubmit.style.borderColor = "#4caf50";
-      setTimeout(() => {
-        btnSubmit.innerHTML = originalText;
-        btnSubmit.style.backgroundColor = "";
-        btnSubmit.style.borderColor = "";
-        orderModal.style.display = "none";
-      }, 2500);
-    } catch(err) {
-      console.error(err);
-      btnSubmit.innerText = "Error!";
-      btnSubmit.style.backgroundColor = "#f44336";
-      btnSubmit.style.borderColor = "#f44336";
-      setTimeout(() => {
-        btnSubmit.innerHTML = originalText;
-        btnSubmit.style.backgroundColor = "";
-        btnSubmit.style.borderColor = "";
-      }, 3000);
+    }, 1000);
+  } else if (redirectBanner) {
+    redirectBanner.style.display = "none"; // hide on desktop
+  }
+
+  // Save order to Firestore
+  if (window.db) {
+    try {
+      await window.db.collection("orders").add({
+        artType,
+        details:       finalDetails,
+        name,
+        phone,
+        address,
+        notes,
+        amountExpected: rawAmount,
+        paymentMethod:  "UPI-Direct",
+        status:         "pending_confirmation",
+        timestamp:      firebase.firestore.FieldValue.serverTimestamp()
+      });
+    } catch (err) {
+      console.error("Firestore save error:", err);
     }
   }
+
+  // Wire up the WhatsApp confirm button
+  const btnConfirm = document.getElementById("btn-confirm-paid");
+  const freshConfirm = btnConfirm.cloneNode(true);
+  btnConfirm.parentNode.replaceChild(freshConfirm, btnConfirm);
+
+  freshConfirm.addEventListener("click", function () {
+    window.open(`https://wa.me/919042564940?text=${encodeURIComponent(waConfirmText)}`, "_blank");
+    freshConfirm.innerHTML = "✔ Opening WhatsApp…";
+    freshConfirm.style.backgroundColor = "#25d366";
+    freshConfirm.style.color = "#fff";
+    setTimeout(() => { orderModal.style.display = "none"; }, 1500);
+  });
+}
+
+/* =========================================
+   Copy UPI ID to Clipboard
+========================================= */
+function copyUpiId() {
+  const upiId = "santhoshaa2023-1@okhdfcbank";
+  navigator.clipboard.writeText(upiId).then(() => {
+    const btn = document.querySelector("button[onclick='copyUpiId()']");
+    if (btn) {
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+      btn.style.background = "rgba(76,175,80,0.2)";
+      btn.style.borderColor = "#4caf50";
+      btn.style.color = "#4caf50";
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = "";
+        btn.style.borderColor = "";
+        btn.style.color = "";
+      }, 2000);
+    }
+  }).catch(() => {
+    alert("UPI ID: " + upiId + "\n\nPlease copy it manually.");
+  });
 }
 
 /* =========================================
