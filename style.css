@@ -538,6 +538,39 @@ section {
 }
 
 /* =========================================
+   Stats Section
+========================================= */
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 4rem 4rem;
+  background: linear-gradient(to right, #050505, #111111, #050505);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.stat-item {
+  text-align: center;
+}
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+.stat-number::after {
+  content: "+";
+}
+.stat-item p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* =========================================
    Services Section
 ========================================= */
 .services {
@@ -868,6 +901,57 @@ section {
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* =========================================
+   FAQ Section
+========================================= */
+.faq-section {
+  background-color: var(--surface-color);
+}
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1rem;
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+.faq-question:hover {
+  color: var(--accent-color);
+}
+.faq-question i {
+  font-size: 1.1rem;
+  transition: transform 0.4s ease;
+}
+.faq-question.active i {
+  transform: rotate(180deg);
+  color: var(--accent-color);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.faq-answer p {
+  padding-bottom: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1rem;
 }
 
 /* =========================================
@@ -1366,7 +1450,25 @@ footer::before {
     font-size: 2.2rem;
   }
 
-  .services-grid {
+  .faq-question {
+    font-size: 1.2rem;
+  }
+  .trust-item p {
+    font-size: 0.75rem;
+  }
+
+  .stats-section {
+    padding: 3rem 1.5rem;
+    gap: 2.5rem;
+  }
+  .stat-number {
+    font-size: 3rem;
+  }
+  .stat-item p {
+    font-size: 0.8rem;
+  }
+
+  .masonry-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }

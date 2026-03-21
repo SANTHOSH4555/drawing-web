@@ -623,4 +623,56 @@ document.querySelector(".logo").addEventListener("mouseleave", (e) => {
   e.target.style.opacity = "1";
 });
 
+/* =========================================
+   Stats Counter Animation
+========================================= */
+const statNumbers = document.querySelectorAll('.stat-number');
+let statsAnimated = false;
+
+window.addEventListener('scroll', () => {
+  if (statsAnimated) return;
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) {
+    const sectionPos = statsSection.getBoundingClientRect().top;
+    const screenPos = window.innerHeight;
+    
+    if (sectionPos < screenPos) {
+      statNumbers.forEach(stat => {
+        const target = +stat.getAttribute('data-target');
+        const duration = 2000;
+        const increment = target / (duration / 16); // ~60fps
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            stat.innerText = Math.ceil(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            stat.innerText = target;
+          }
+        };
+        updateCounter();
+      });
+      statsAnimated = true;
+    }
+  }
+});
+
+/* =========================================
+   FAQ Accordion
+========================================= */
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    question.classList.toggle('active');
+    const answer = question.nextElementSibling;
+    if (question.classList.contains('active')) {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    } else {
+      answer.style.maxHeight = "0";
+    }
+  });
+});
 
